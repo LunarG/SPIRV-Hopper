@@ -1,0 +1,43 @@
+{
+    "repos": [
+        {
+            "name": "glslang",
+            "url": "https://github.com/KhronosGroup/glslang.git",
+            "sub_dir": "glslang",
+            "build_dir": "glslang/build",
+            "install_dir": "glslang/build/install",
+            "commit": "f1cb8608b390a7f51b4ae0d62cd415ba47a59b86"
+        },
+        {
+            "name": "Vulkan-Headers",
+            "api": "vulkan",
+            "url": "https://github.com/KhronosGroup/Vulkan-Headers.git",
+            "sub_dir": "Vulkan-Headers",
+            "build_dir": "Vulkan-Headers/build",
+            "install_dir": "Vulkan-Headers/build/install",
+            "commit": "v1.3.261"
+        },
+        {
+            "name": "SPIRV-Headers",
+            "url": "https://github.com/KhronosGroup/SPIRV-Headers.git",
+            "sub_dir": "SPIRV-Headers",
+            "build_dir": "SPIRV-Headers/build",
+            "install_dir": "SPIRV-Headers/build/install",
+            "commit": "d790ced752b5bfc06b6988baadef6eb2d16bdf96"
+        },
+        {
+            "name": "SPIRV-Reflect",
+            "url": "https://github.com/KhronosGroup/SPIRV-Reflect.git",
+            "sub_dir": "SPIRV-Reflect",
+            "install_dir": "SPIRV-Reflect",
+            "build_step": "skip",
+            "commit": "4f52d7d84566840bdd5f9c0d8ae36fe6ee864223"
+        }
+    ],
+    "install_names": {
+        "glslang": "GLSLANG_INSTALL_DIR",
+        "Vulkan-Headers": "VULKAN_HEADERS_INSTALL_DIR",
+        "SPIRV-Headers": "SPIRV_HEADERS_INSTALL_DIR",
+        "SPIRV-Reflect": "SPIRV_REFLECT_INSTALL_DIR"
+    }
+}
