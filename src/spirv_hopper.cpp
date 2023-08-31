@@ -65,7 +65,7 @@ bool Hopper::Reflect() {
         uint32_t shader_stage_set = 0x0;
         for (uint32_t i = 0; i < module.entry_point_count; i++) {
             if (shader_stage_set & module.entry_points[i].shader_stage) {
-                std::cout << "Warning: Can't handle duplicate Execution Modes in moudle, might have duplciated objects\n";
+                std::cout << "WARNING: Can't handle duplicate Execution Modes in moudle, might have duplciated objects\n";
             }
             shader_stage_set |= module.entry_points[i].shader_stage;
         }
@@ -259,7 +259,7 @@ bool Hopper::CreateVertexAttributeDescriptions(const SpvReflectInterfaceVariable
     const SpvReflectTypeDescription& description = *variable.type_description;
     if (variable.member_count > 0) {
         if (description.op == SpvOp::SpvOpTypeArray) {
-            // SPIRV-Reflect can't handle array-of-structs currently
+            std::cout << "ERROR: SPIRV-Reflect can't handle array-of-structs currently\n";
             return false;
         }
 
@@ -518,14 +518,14 @@ bool Hopper::Run() {
         case VK_SHADER_STAGE_MISS_BIT_KHR:
         case VK_SHADER_STAGE_INTERSECTION_BIT_KHR:
         case VK_SHADER_STAGE_CALLABLE_BIT_KHR:
-            std::cout << "Currently Ray Tracing stages not supported\n";
+            std::cout << "WARNING: Currently Ray Tracing stages not supported\n";
             break;
         case VK_SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI:
         case VK_SHADER_STAGE_CLUSTER_CULLING_BIT_HUAWEI:
-            std::cout << "Currently Subpass Shading stages not supported\n";
+            std::cout << "WARNING: Currently Subpass Shading stages not supported\n";
             break;
         default:
-            std::cout << "Shader stage not found\n";
+            std::cout << "ERROR: Shader stage not found\n";
             return false;
             break;
     }
