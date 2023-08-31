@@ -396,7 +396,7 @@
                         "maxPerStageDescriptorUniformBuffers": 4294967000,
                         "maxPerStageResources": 4294967000,
                         "maxPushConstantsSize": 4294967000,
-                        "maxSampleMaskWords": 1,
+                        "maxSampleMaskWords": 4294967000,
                         "maxSamplerAllocationCount": 4000,
                         "maxSamplerAnisotropy": 16,
                         "maxSamplerLodBias": 15,
@@ -488,7 +488,13 @@
                         "VK_SUBGROUP_FEATURE_CLUSTERED_BIT",
                         "VK_SUBGROUP_FEATURE_QUAD_BIT",
                         "VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV"
-                    ]
+                    ],
+                    "subgroupQuadOperationsInAllStages": true,
+                    "maxMultiviewViewCount": 16,
+                    "maxMultiviewInstanceIndex": 4294967000,
+                    "protectedNoFault": true,
+                    "maxPerSetDescriptors": 4294967000,
+                    "maxMemoryAllocationSize": 4294967000
                 },
                 "VkPhysicalDeviceVulkan12Properties": {
                     "shaderSignedZeroInfNanPreserveFloat16": true,
