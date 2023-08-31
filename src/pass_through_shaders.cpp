@@ -173,7 +173,8 @@ bool Hopper::CreatePassThroughVertex() {
         shader += "var_" + std::to_string(variable.location) + "_" + std::to_string(component);
 
         // Vertex output into Gemometry are not actually arrays
-        if (shader_stage != VK_SHADER_STAGE_GEOMETRY_BIT) {
+        // strip array if VK_KHR_fragment_shader_barycentric
+        if (shader_stage != VK_SHADER_STAGE_GEOMETRY_BIT && (variable.decoration_flags & SPV_REFLECT_DECORATION_PER_VERTEX) == 0) {
             for (uint32_t i = 0; i < variable.array.dims_count; i++) {
                 shader += "[" + std::to_string(variable.array.dims[i]) + "]";
             }

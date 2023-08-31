@@ -31,7 +31,7 @@
             "sub_dir": "SPIRV-Reflect",
             "install_dir": "SPIRV-Reflect",
             "build_step": "skip",
-            "commit": "4f52d7d84566840bdd5f9c0d8ae36fe6ee864223"
+            "commit": "6913fb1804996dfebe2f3d82792d4840befd91a1"
         }
     ],
     "install_names": {
