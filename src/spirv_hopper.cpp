@@ -210,10 +210,8 @@ bool Hopper::CreatePipelineLayout() {
     return true;
 }
 
-// Some Builtins like 'gl_in' of tessellation shaders are structs and so the gl_* identifiers are reserved. Can't assume all
-// structs are Builtins.
 bool Hopper::IsBuiltinType(const SpvReflectInterfaceVariable& variable) {
-    return (variable.built_in >= 0 || (variable.name && std::string(variable.name).find("gl_") == 0));
+    return (variable.decoration_flags & SPV_REFLECT_DECORATION_BUILT_IN) != 0;
 }
 
 bool Hopper::CreateShaderStage(size_t code_size, const void* code, VkShaderStageFlagBits stage, const char* name) {
