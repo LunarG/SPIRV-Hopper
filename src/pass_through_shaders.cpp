@@ -146,6 +146,14 @@ bool Hopper::CreatePassThroughVertex() {
         DefineAllStruct(*p_variable->type_description);
     }
     for (auto entry : struct_ordered_map) {
+        if (shader_stage == VK_SHADER_STAGE_GEOMETRY_BIT) {
+            const auto struct_type = entry.second->struct_type_description;
+            if (struct_type && (struct_type->decoration_flags & SPV_REFLECT_DECORATION_BLOCK) != 0) {
+                shader += GetMatchingGeometryBuiltins(*struct_type);
+                continue;
+            }
+        }
+
         shader += DefineCustomStruct(*entry.second);
     }
 
@@ -189,6 +197,31 @@ bool Hopper::CreatePassThroughVertex() {
 bool Hopper::CreatePassThroughVertexNoInterface() {
     std::string shader = "#version 450\nvoid main() { }";
     return BuildPassThroughShader(shader, VK_SHADER_STAGE_VERTEX_BIT);
+}
+
+// This is a big hack around
+// https://github.com/KhronosGroup/SPIRV-Reflect/issues/221
+std::string Hopper::GetMatchingGeometryBuiltins(const SpvReflectTypeDescription& struct_type) {
+    std::string shader = "out gl_PerVertex {\n";
+    for (uint32_t i = 0; i < struct_type.member_count; i++) {
+        const auto& member = struct_type.members[i];
+        // only a limit number of possible options to just list them
+        if (member.op == SpvOpTypeVector) {
+            shader += "    vec4 gl_Position;\n";
+        } else if (member.traits.numeric.scalar.width == 32 &&
+                   member.type_flags == SpvReflectTypeFlagBits::SPV_REFLECT_TYPE_FLAG_FLOAT) {
+            shader += "    float gl_PointSize;\n";
+        } else if (member.traits.array.dims_count == 1) {
+            // only way to guess for the moment
+            if (member.struct_member_name && strcmp(member.struct_member_name, "gl_ClipDistance") == 0) {
+                shader += "    float gl_ClipDistance[];\n";
+            } else {
+                shader += "    float gl_CullDistance[];\n";
+            }
+        }
+    }
+    shader += "};\n";
+    return shader;
 }
 
 // TODO - The CreatePassThrough*() function share a lot, could make a common

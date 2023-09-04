@@ -42,6 +42,7 @@ class Hopper {
     bool IsBuiltinType(const SpvReflectInterfaceVariable& variable);
     std::string GetTypeDescription(SpvReflectTypeDescription& description);
     std::string DefineCustomStruct(const SpvReflectTypeDescription& description);
+    std::string GetMatchingGeometryBuiltins(const SpvReflectTypeDescription& description);
     void DefineAllStruct(const SpvReflectTypeDescription& description);
     bool BuildPassThroughShader(std::string& source, VkShaderStageFlagBits stage);
     bool CreatePassThroughVertex();
