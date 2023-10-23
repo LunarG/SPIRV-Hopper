@@ -59,7 +59,10 @@ VKAPI_ATTR VkBool32 VKAPI_CALL DebugUtilMessengerCallback(VkDebugUtilsMessageSev
     } else if (callback_data->messageIdNumber == static_cast<int32_t>(0x7fcb0409)) {
         // TODO - Need to detect OpImageWrite writes to determine input format component size
         std::cerr << callback_data->pMessage << "\n";
-    } else if (callback_data->messageIdNumber == static_cast<int32_t>(0x2a1bf17f)) {
+    } else if (callback_data->messageIdNumber == static_cast<int32_t>(0x148ea4f3)) {
+        // Zink has bug currently where it uses Xfb in Fragment shader
+        std::cerr << callback_data->pMessage << "\n";
+    } else if (callback_data->messageIdNumber == static_cast<int32_t>(0xa5625282)) {
         // spirv-val failed error message, don't quit, issue with SPIR-V or spirv-val
         // Usually the SPIR-V is just missing the OpCapability for what it is using
         std::cerr << callback_data->pMessage << "\n";

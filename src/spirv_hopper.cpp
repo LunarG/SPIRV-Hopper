@@ -367,10 +367,26 @@ bool Hopper::CreateGraphicsPipeline() {
 
     // VkPipelineInputAssemblyStateCreateInfo
     {
-        vk.input_assembly_state.topology = ((shader_stage == VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT) ||
-                                            (shader_stage == VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT))
-                                               ? VK_PRIMITIVE_TOPOLOGY_PATCH_LIST
-                                               : VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+        vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+
+        if ((shader_stage == VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT) ||
+            (shader_stage == VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT)) {
+            vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_PATCH_LIST;
+        } else if (shader_stage == VK_SHADER_STAGE_GEOMETRY_BIT) {
+            for (uint32_t i = 0; i < entry_point.execution_mode_count; i++) {
+                if (entry_point.execution_modes[i] == SpvExecutionMode::SpvExecutionModeTriangles) {
+                    vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+                } else if (entry_point.execution_modes[i] == SpvExecutionMode::SpvExecutionModeInputTrianglesAdjacency) {
+                    vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+                } else if (entry_point.execution_modes[i] == SpvExecutionMode::SpvExecutionModeInputLines) {
+                    vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST;
+                } else if (entry_point.execution_modes[i] == SpvExecutionMode::SpvExecutionModeInputLinesAdjacency) {
+                    vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST;
+                } else if (entry_point.execution_modes[i] == SpvExecutionMode::SpvExecutionModeInputPoints) {
+                    vk.input_assembly_state.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
+                }
+            }
+        }
     }
 
     // Subpass and Renderpass
