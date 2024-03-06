@@ -18,7 +18,7 @@
             "sub_dir": "Vulkan-Headers",
             "build_dir": "Vulkan-Headers/build",
             "install_dir": "Vulkan-Headers/build/install",
-            "commit": "v1.3.268"
+            "commit": "v1.3.279"
         },
         {
             "name": "SPIRV-Headers",
@@ -26,7 +26,7 @@
             "sub_dir": "SPIRV-Headers",
             "build_dir": "SPIRV-Headers/build",
             "install_dir": "SPIRV-Headers/build/install",
-            "commit": "4183b260f4cccae52a89efdfcdd43c4897989f42"
+            "commit": "8b246ff75c6615ba4532fe4fde20f1be090c3764"
         },
         {
             "name": "SPIRV-Reflect",
@@ -34,7 +34,7 @@
             "sub_dir": "SPIRV-Reflect",
             "install_dir": "SPIRV-Reflect",
             "build_step": "skip",
-            "commit": "3f468129720eded0cef4077302e491036d099856"
+            "commit": "8406f76dcf6cca11fe430058c4f0ed4b846f3be4"
         }
     ],
     "install_names": {

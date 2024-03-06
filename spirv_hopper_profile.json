@@ -752,6 +752,7 @@
                 "VK_KHR_16bit_storage": 1,
                 "VK_KHR_8bit_storage": 1,
                 "VK_KHR_acceleration_structure": 1,
+                "VK_KHR_cooperative_matrix": 1,
                 "VK_KHR_deferred_host_operations": 1,
                 "VK_KHR_bind_memory2": 1,
                 "VK_KHR_buffer_device_address": 1,
