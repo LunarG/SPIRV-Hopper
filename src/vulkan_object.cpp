@@ -198,8 +198,10 @@ VulkanInstance::VulkanInstance() {
             LvlInitStruct<VkPhysicalDeviceShaderClockFeaturesKHR>(&physical_device_cooperative_matrix_features);
         auto physical_device_shader_subgroup_uniform_control_flow_features =
             LvlInitStruct<VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR>(&physical_device_shader_clock_features);
+        auto physical_device_rtx_motion_blur_features_nv = LvlInitStruct<VkPhysicalDeviceRayTracingMotionBlurFeaturesNV>(
+            &physical_device_shader_subgroup_uniform_control_flow_features);
         auto physical_device_maintenance5_features =
-            LvlInitStruct<VkPhysicalDeviceMaintenance5FeaturesKHR>(&physical_device_shader_subgroup_uniform_control_flow_features);
+            LvlInitStruct<VkPhysicalDeviceMaintenance5FeaturesKHR>(&physical_device_rtx_motion_blur_features_nv);
 
         auto physical_device_vulkan11_features =
             LvlInitStruct<VkPhysicalDeviceVulkan11Features>(&physical_device_maintenance5_features);

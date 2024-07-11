@@ -170,9 +170,17 @@
                 "VkPhysicalDeviceShaderImageFootprintFeaturesNV": {
                     "imageFootprint": true
                 },
+                "VkPhysicalDeviceRayTracingMotionBlurFeaturesNV": {
+                    "rayTracingMotionBlur": true,
+                    "rayTracingMotionBlurPipelineTraceRaysIndirect": true
+                },
                 "VkPhysicalDeviceShadingRateImageFeaturesNV": {
                     "shadingRateImage": true,
                     "shadingRateCoarseSampleOrder": true
+                },
+                "VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR": {
+                    "rayTracingMaintenance1": true,
+                    "rayTracingPipelineTraceRaysIndirect2": true
                 },
                 "VkPhysicalDeviceInvocationMaskFeaturesHUAWEI": {
                     "invocationMask": true
